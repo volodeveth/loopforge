@@ -65,6 +65,10 @@ or invoke the skill directly. It will:
 source of truth. Without them, agents loop blindly and drift. If your project
 can't be automatically verified, set that up first — or use plain prompting.
 
+## Author
+
+Built by [volodeveth](https://volodeveth.vercel.app/) — portfolio & more projects.
+
 ## License
 
 MIT
