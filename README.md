@@ -30,7 +30,7 @@ mechanisms that are faster, cheaper, and auditable.
 This repo is a Claude Code plugin. Once published to GitHub, anyone can use it:
 
 ```
-/plugin marketplace add <your-org>/loopforge
+/plugin marketplace add volodeveth/loopforge
 /plugin install loopforge
 ```
 
