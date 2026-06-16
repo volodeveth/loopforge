@@ -1,0 +1,17 @@
+{
+  "name": "loopforge",
+  "owner": {
+    "name": "starbowshine"
+  },
+  "metadata": {
+    "description": "LoopForge — forge large features in an autonomous multi-agent loop.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "loopforge",
+      "source": "./",
+      "description": "Forge large features in an autonomous multi-agent loop: interview, spec, plan, run a TDD loop, hand back for human verification."
+    }
+  ]
+}

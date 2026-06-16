@@ -1,0 +1,75 @@
+{
+  "_comment": "EXAMPLE / SAMPLE ONLY - not a real plan. Illustrates a filled-in tasks.json for the 'Password reset via email' feature. Copy ../tasks.json (the blank template) for real work. Note how T2/T3 are parallel (independent files) while T4/T5 depend on earlier tasks.",
+  "feature": "Password reset via email",
+  "created": "2026-06-16",
+  "phases": [
+    {
+      "id": "phase-1",
+      "name": "Data layer + token model",
+      "tasks": [
+        {
+          "id": "T1",
+          "title": "Add password_reset_tokens table + migration (hashed token, expires_at, used_at)",
+          "owner": "database-architect",
+          "depends_on": [],
+          "parallel": false,
+          "files": ["migrations/0007_password_reset_tokens.up.sql", "migrations/0007_password_reset_tokens.down.sql"],
+          "acceptance": "Token is single-use and expires after 30 min",
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "id": "phase-2",
+      "name": "Core services (parallel)",
+      "tasks": [
+        {
+          "id": "T2",
+          "title": "TokenService: generate 256-bit token, store hash, validate + consume",
+          "owner": "implementer-A",
+          "depends_on": ["T1"],
+          "parallel": true,
+          "files": ["src/auth/token-service.ts"],
+          "acceptance": "Token expires after 30 min and is single-use (410 on reuse)",
+          "status": "green"
+        },
+        {
+          "id": "T3",
+          "title": "EmailQueue: enqueue reset email async (no inline send)",
+          "owner": "implementer-B",
+          "depends_on": ["T1"],
+          "parallel": true,
+          "files": ["src/email/reset-email.ts"],
+          "acceptance": "forgot-password returns < 300ms p95; email queued not inline",
+          "status": "in_progress"
+        }
+      ]
+    },
+    {
+      "id": "phase-3",
+      "name": "Endpoints + policy",
+      "tasks": [
+        {
+          "id": "T4",
+          "title": "POST /auth/forgot-password (202 for known+unknown, rate limit 5/hour)",
+          "owner": "api-designer",
+          "depends_on": ["T2", "T3"],
+          "parallel": false,
+          "files": ["src/auth/routes/forgot-password.ts"],
+          "acceptance": "No user enumeration; 429 on 6th request/hour",
+          "status": "todo"
+        },
+        {
+          "id": "T5",
+          "title": "POST /auth/reset-password (argon2id rehash, invalidate all sessions, enforce policy)",
+          "owner": "api-designer",
+          "depends_on": ["T2"],
+          "parallel": false,
+          "files": ["src/auth/routes/reset-password.ts"],
+          "acceptance": "Valid token resets pw, logs out other sessions; weak pw -> 422",
+          "status": "todo"
+        }
+      ]
+    }
+  ]
+}

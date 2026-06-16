@@ -1,0 +1,16 @@
+# Local-only docs — not published
+LOOP_ENGINEERING_FLOW_UA.md
+
+# Source video transcription (research material, not for the repo)
+*What Is Loop Engineering*.txt
+
+# Local session / crash transcripts
+1.txt
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*~
+.vscode/
+.idea/

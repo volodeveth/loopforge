@@ -1,0 +1,32 @@
+{
+  "feature": "TODO short feature name",
+  "created": "TODO YYYY-MM-DD",
+  "phases": [
+    {
+      "id": "phase-1",
+      "name": "TODO phase name",
+      "tasks": [
+        {
+          "id": "T1",
+          "title": "TODO task title",
+          "owner": "implementer-A",
+          "depends_on": [],
+          "parallel": true,
+          "files": ["TODO/path.ts"],
+          "acceptance": "TODO which acceptance criterion this satisfies",
+          "status": "todo"
+        },
+        {
+          "id": "T2",
+          "title": "TODO task title",
+          "owner": "implementer-B",
+          "depends_on": ["T1"],
+          "parallel": false,
+          "files": ["TODO/path2.ts"],
+          "acceptance": "TODO which acceptance criterion this satisfies",
+          "status": "todo"
+        }
+      ]
+    }
+  ]
+}

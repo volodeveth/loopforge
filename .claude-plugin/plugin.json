@@ -1,0 +1,16 @@
+{
+  "name": "loopforge",
+  "version": "0.1.0",
+  "description": "Forge large features in an autonomous multi-agent loop: interview the user, fill the acceptance spec, plan tasks, run a TDD loop, and hand back for human verification. Human only at the start and end.",
+  "author": {
+    "name": "starbowshine"
+  },
+  "keywords": [
+    "loop-engineering",
+    "spec-driven",
+    "multi-agent",
+    "tdd",
+    "autonomous",
+    "orchestration"
+  ]
+}
