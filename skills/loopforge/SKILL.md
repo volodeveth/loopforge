@@ -47,6 +47,13 @@ where choices are discrete), wait for answers, do not assume.** Do not move on
 until a topic is answered. If the user says "you decide", pick a sensible
 default and state it.
 
+**When the user pushes back on questions ("don't ask me 20 things", "just
+start"), do NOT silently invent the spec.** Instead, batch the decisions into a
+few AskUserQuestion calls with a recommended default marked on every option, so
+they can answer "default" in seconds — and only surface the forks where a wrong
+guess is expensive (lock-out, expiry/idempotency, over-limit behavior, reuse vs
+greenfield). This honors their time without skipping confirmation.
+
 1. **Feature** — In one paragraph, what should this do and why?
 2. **Acceptance criteria** — How do we know it's done? Push for *verifiable*
    statements with concrete numbers (status codes, limits, thresholds, coverage),
